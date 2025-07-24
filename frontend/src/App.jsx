@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import Spinner from "./components/Spinner";
 import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
+import ApplyFreelancer from './pages/ApplyFreelancer';
+import NotificationPage from "./pages/NotificationPage";
 
 const App = () => {
   const { loading } = useSelector((state) => state.alerts);
@@ -55,6 +57,22 @@ const App = () => {
                 <PublicRoute>
                   <RegisterPage />
                 </PublicRoute>
+              }
+            />
+            <Route
+              path="/apply-freelancer"
+              element={
+                <ProtectedRoute>
+                  <ApplyFreelancer />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/notification"
+              element={
+                <ProtectedRoute>
+                  <NotificationPage />
+                </ProtectedRoute>
               }
             />
           </Routes>
