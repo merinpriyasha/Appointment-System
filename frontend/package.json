@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "proxy":"http://localhost:8080",
+  "proxy": "http://localhost:8080",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,14 +8,19 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "vite"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
     "antd": "^5.26.6",
     "axios": "^1.10.0",
+    "lucide-react": "^0.525.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-redux": "^9.2.0",
     "react-router-dom": "^7.7.0",
+    "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5"
   },
   "devDependencies": {

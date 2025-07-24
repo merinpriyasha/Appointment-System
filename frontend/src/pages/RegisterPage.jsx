@@ -1,24 +1,29 @@
 import React from "react";
-import { Form, Input, message } from "antd";
+import { Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
 
 const RegisterPage = () => {
   const navigate = useNavigate();
-
+const dispatch = useDispatch();
   //form handler
-  const onFishHandler = async (values) => {
+  const onFinishHandler = async (values) => {
     try {
-      const res = await axios.post("/api/v1/user/register", values);
+      dispatch(showLoading());
+      const res = await axios.post("api/v1/user/register", values);
+      dispatch(hideLoading());
       if (res.data.success) {
-        message.success("Register Successfully!");
-        navigate("/login");
+        toast.success("Registered Successfully!");
+        setTimeout(() => navigate("/login"), 1000);
       } else {
-        message.error(res.data.message);
+        toast.error(res.data.message);
       }
     } catch (error) {
-      console.log(error);
-      message.error("Something Went Wrong");
+      dispatch(hideLoading());
+      toast.error("Something went wrong", error);
     }
   };
 
@@ -31,7 +36,7 @@ const RegisterPage = () => {
           </h1>
           <Form
             layout="vertical"
-            onFinish={onFishHandler}
+            onFinish={onFinishHandler}
             className="space-y-4"
           >
             <Form.Item

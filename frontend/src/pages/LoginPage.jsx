@@ -1,11 +1,32 @@
 import React from "react";
 import { Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { showLoading, hideLoading } from "../redux/features/alertSlice";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   //form handler
-  const onFishHandler = (values) => {
-    console.log(values);
+  const onFishHandler = async (values) => {
+    try {
+      dispatch(showLoading());
+      const res = await axios.post("/api/v1/user/login", values);
+      dispatch(hideLoading());
+      if (res.data.success) {
+        localStorage.setItem("token", res.data.token);
+        toast.success("Login Successfully");
+        navigate("/");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      dispatch(hideLoading());
+      console.log(error);
+      toast.error("something went wrong");
+    }
   };
 
   return (
