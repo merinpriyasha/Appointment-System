@@ -5,16 +5,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { showLoading, hideLoading } from "../redux/features/alertSlice.js";
 import axios from "axios";
 import toast from 'react-hot-toast';
+import { setUser } from "../redux/features/userSlice";
 
 const NotificationPage = () => {
 
   const navigate = useNavigate();
   const { user } = useSelector((state) => state.user);
   const [activeTab, setActiveTab] = useState("unread");
-   const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const handleMarkAllRead = async() => {
-     try {
+  const handleMarkAllRead = async () => {
+    try {
       dispatch(showLoading());
       const res = await axios.post(
         "/api/v1/user/get-all-notification",
@@ -30,6 +31,11 @@ const NotificationPage = () => {
       dispatch(hideLoading());
       if (res.data.success) {
         toast.success(res.data.message);
+        dispatch(setUser({
+          ...user,
+          notifcation: [],
+          seennotification: [...user.seennotification, ...user.notifcation],
+        }));
       } else {
         toast.error(res.data.message);
       }
@@ -40,8 +46,8 @@ const NotificationPage = () => {
     }
   };
 
-  const handleDeleteAllRead = async() => {
-      try {
+  const handleDeleteAllRead = async () => {
+    try {
       dispatch(showLoading());
       const res = await axios.post(
         "/api/v1/user/delete-all-notification",
@@ -55,6 +61,10 @@ const NotificationPage = () => {
       dispatch(hideLoading());
       if (res.data.success) {
         toast.success(res.data.message);
+        dispatch(setUser({
+          ...user,
+          seennotification: [],
+        }));
       } else {
         toast.error(res.data.message);
       }

@@ -52,7 +52,8 @@ const Layout = ({ children }) => {
 
 
   //notification length
-  const notifCount = user?.notification?.length || 0;
+  const notifCount = user?.notifcation?.length || 0;
+
   return (
     <div className="min-h-screen flex flex-col">
       {/* Header */}
@@ -63,21 +64,6 @@ const Layout = ({ children }) => {
             <h1 className="text-xl font-bold hidden sm:block">SkillSync</h1>
           </div>
           <nav className="space-x-3 text-sm md:text-base">
-            {/* <Link to="/" className="hover:underline">
-              Home
-            </Link>
-            <Link to="/appointments" className="hover:underline">
-              Appointments
-            </Link>
-            <Link to="/freelancers" className="hover:underline">
-              Freelancers
-            </Link>
-            <Link to="/about" className="hover:underline">
-              About Us
-            </Link>
-            <Link to="/contact" className="hover:underline">
-              Contact Us
-            </Link> */}
             {navBarMenu.map((menuItem, index) => (
               <Link
                 key={index}
@@ -98,7 +84,7 @@ const Layout = ({ children }) => {
               {notifCount > 0 && (
                 <>
                   {/* Ping animation */}
-                  <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 animate-ping"></span>
+                  {/* <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 animate-ping"></span> */}
 
                   {/* Static red dot or count */}
                   <span className="absolute -top-1 -right-1 flex items-center justify-center h-5 w-5 text-xs rounded-full bg-red-600 text-white font-semibold">

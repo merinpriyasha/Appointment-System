@@ -10,6 +10,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import PublicRoute from "./components/PublicRoute";
 import ApplyFreelancer from './pages/ApplyFreelancer';
 import NotificationPage from "./pages/NotificationPage";
+import User from "./pages/admin/user";
+import Freelancer from "./pages/admin/freelancer";
 
 const App = () => {
   const { loading } = useSelector((state) => state.alerts);
@@ -64,6 +66,22 @@ const App = () => {
               element={
                 <ProtectedRoute>
                   <ApplyFreelancer />
+                </ProtectedRoute>
+              }
+            />
+             <Route
+              path="/admin/users"
+              element={
+                <ProtectedRoute>
+                  <User />
+                </ProtectedRoute>
+              }
+            />
+                 <Route
+              path="/admin/freelancer"
+              element={
+                <ProtectedRoute>
+                  <Freelancer />
                 </ProtectedRoute>
               }
             />

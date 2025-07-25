@@ -22,11 +22,9 @@ export const adminMenu = [
   {
     name: "Home",
     path: "/",
-  },
-
-  {
+  }, {
     name: "Freelancers",
-    path: "/admin/freelancers",
+    path: "/admin/freelancer"
   },
   {
     name: "Users",
@@ -51,7 +49,7 @@ export const freelancerMenu = (userId) => [
     name: "Appointments",
     path: "/freelancer-appointments",
   },
-   {
+  {
     name: "Apply Freelancer",
     path: "/apply-freelancer",
   },

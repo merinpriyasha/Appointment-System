@@ -93,7 +93,7 @@ export const loginController = async (req, res) => {
 
 export const authController = async (req, res) => {
   try {
-    const user = await userModel.findById({ _id: req.body.userId });
+    const user = await userModel.findById({ _id: req.userId });
     user.password = undefined; //password hide
     if (!user) {
       return res.status(200).send({
@@ -150,7 +150,7 @@ export const applyFreelancerController = async (req, res) => {
 //notification ctrl
 export const getAllNotificationController = async (req, res) => {
   try {
-    const user = await userModel.findOne({ _id: req.body.userId });
+    const user = await userModel.findOne({ _id: req.userId });
     const seennotification = user.seennotification;
     const notifcation = user.notifcation;
     seennotification.push(...notifcation);

@@ -4,6 +4,7 @@ import morgan from 'morgan'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import userRoutes from './routes/userRoute.js';
+import adminRoutes from './routes/adminRoute.js'
 
 //dotenv config
 dotenv.config()
@@ -21,6 +22,7 @@ app.use(express.urlencoded({ extended: true })); // for form-data (like images)
 
 //routes
 app.use('/api/v1/user', userRoutes)
+app.use('/api/v1/admin', adminRoutes)
 
 //port 
 const port = process.env.PORT || 8080
